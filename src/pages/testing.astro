@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Astro</title>
+    <style is:global>
+      video {
+        max-width: 350px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <button id="replaceWith">replaceWith</button>
+    <button id="innerHtml">innerHTML</button>
+    <button id="importNode">importNode</button>
+    <button id="useRange">Range.createContextualFragment</button>
+
+    <script is:inline>
+      document.getElementById("replaceWith").addEventListener("click", () => {
+        const html = `
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="/video.mp4" type="video/mp4">
+          </video>
+        `;
+
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        document.body.replaceWith(doc.body);
+      });
+    </script>
+
+    <script is:inline>
+      document.getElementById("innerHtml").addEventListener("click", () => {
+        const html = `
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="/video.mp4" type="video/mp4">
+          </video>
+        `;
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        document.body.innerHTML = doc.body.innerHTML;
+      });
+    </script>
+
+    <script is:inline>
+      document.getElementById("importNode").addEventListener("click", () => {
+        const html = `
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="/video.mp4" type="video/mp4">
+          </video>
+        `;
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const importedBody = document.importNode(doc.body, true);
+        document.body.replaceChildren(...importedBody.childNodes);
+      });
+    </script>
+
+    <script is:inline>
+      document.getElementById("useRange").addEventListener("click", () => {
+        const html = `
+          <video autoplay loop muted playsinline preload="auto">
+            <source src="/video.mp4" type="video/mp4">
+          </video>
+        `;
+        const range = document.createRange();
+        const fragment = range.createContextualFragment(html);
+        document.body.replaceChildren(fragment);
+      });
+    </script>
+  </body>
+</html>
