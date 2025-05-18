@@ -59,3 +59,13 @@ haven't thought this through but can try it out like this
   oldBody.replaceChildren(frag);
 }
 ```
+
+## video for non mac user
+
+https://github.com/user-attachments/assets/fa8aab2e-a55f-48b7-b124-0d0d976de386
+
+https://github.com/user-attachments/assets/98dc0cae-e2d1-41d9-984f-06b640b88cbe
+
+
+
+
